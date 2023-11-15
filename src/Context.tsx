@@ -5,7 +5,7 @@ type MovieContextProps = {
 	movies: Movie[];
 	addMovies: (movies: Movie[]) => void;
 	selectedMovie: MovieDetails | null;
-	selectMovie: (movie: MovieDetails) => void;
+	selectMovie: (movie: MovieDetails | null) => void;
 };
 
 const MovieContext = createContext<MovieContextProps | undefined>(undefined);
@@ -18,7 +18,7 @@ export const MovieContextProvider: React.FC<{ children: ReactNode }> = ({ childr
 		setMovies(movies);
 	};
 
-	const selectMovie = (movie: MovieDetails) => {
+	const selectMovie = (movie: MovieDetails | null) => {
 		setSelectedMovie(movie);
 	};
 

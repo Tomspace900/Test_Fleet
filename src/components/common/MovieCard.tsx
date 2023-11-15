@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Movie } from '../../types/api';
 import { useMovieContext } from '../../Context';
 import { getDetails } from '../../utils/fetchAPI';
+import { Link } from 'react-router-dom';
 const IMG_PATH = process.env.REACT_APP_IMG_PATH;
 
 type MovieCardProps = {
@@ -24,7 +25,8 @@ const MovieCard = ({ movie }: MovieCardProps) => {
 
 	return (
 		<div className='bg-cover overflow-x-scroll rounded-lg cursor-pointer hover:scale-[1.03]' style={imgBackground}>
-			<div
+			<Link
+				to={`/${movie.id}`}
 				className='p-4 sm:h-72 sm:w-48 h-60 w-40 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end hover:backdrop-blur-sm'
 				onMouseOver={() => setHover(true)}
 				onMouseOut={() => setHover(false)}
@@ -34,7 +36,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
 					{hover ? <p className='text-xs text-white mt-1'>{movie.release_date.slice(0, 4)}</p> : null}
 					{hover ? <p className='text-xs text-white mt-3'>{movie.overview.slice(0, 100)}...</p> : null}
 				</div>
-			</div>
+			</Link>
 		</div>
 	);
 };
