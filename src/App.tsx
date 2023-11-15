@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react';
-import MovieList from './components/MovieList';
 import { checkAuth, getDiscover } from './utils/fetchAPI';
+import { Movie } from './types/api';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import MovieList from './components/MovieList';
 
 function App() {
-	const [apiStatus, setApiStatus] = useState<any | null>(null);
-	const [discoverResult, setDiscoverResult] = useState<any[]>([]);
+	const [apiStatus, setApiStatus] = useState<number>(0);
+	const [discoverResult, setDiscoverResult] = useState<Movie[]>([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const authResponse = await checkAuth();
-				setApiStatus(authResponse);
+				setApiStatus(authResponse.status_code);
 
 				const discoverResponse = await getDiscover();
-				setDiscoverResult(discoverResponse);
+				setDiscoverResult(discoverResponse.results);
 			} catch (error) {
-				console.error('Erreur lors de la récupération des données', error);
+				console.error('Error fetching API', error);
 			}
 		};
 
@@ -23,18 +26,12 @@ function App() {
 	}, []);
 
 	return (
-		<div className='flex flex-col justify-between min-h-screen items-center'>
-			<header>
-				<a className='text-primary-500' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-					Fleet case study - {apiStatus?.status_message}
-				</a>
-			</header>
-			<main className='flex w-screen'>
-				<div className='w-fit min-w-[30%]'>gauche</div>
-				<div className='w-full'>droite</div>
+		<div className='flex flex-col justify-between min-h-screen items-center bg-background'>
+			<Header apiStatus={apiStatus} />
+			<main className='w-full h-fit'>
+				<MovieList movies={discoverResult} />
 			</main>
-			<MovieList movies={discoverResult} />
-			<footer>footer</footer>
+			<Footer />
 		</div>
 	);
 }

@@ -1,3 +1,4 @@
+import { AuthResponse, DiscoverResponse } from '../types/api';
 const API_URL = process.env.REACT_APP_API_URL;
 const API_TOKEN = process.env.REACT_APP_API_TOKEN;
 
@@ -27,20 +28,14 @@ async function fetchAPI(url: string, options: FetchOptions = {}) {
 	return response.json();
 }
 
-type AuthResponse = {
-	status_code: boolean;
-	status_message: string;
-	success: boolean;
-};
-
 async function checkAuth() {
-	const response = await fetchAPI('/authentication');
-	return response as AuthResponse;
+	const response: AuthResponse = await fetchAPI('/authentication');
+	return response;
 }
 
 async function getDiscover() {
-	const response = await fetchAPI('/discover/movie?sort_by=popularity.desc');
-	return response.results;
+	const response: DiscoverResponse = await fetchAPI('/discover/movie?sort_by=popularity.desc');
+	return response;
 }
 
 async function getMultiSearch(query: string) {

@@ -1,15 +1,15 @@
-import React from 'react';
-import MovieItem from './MovieItem';
+import { Movie } from '../types/api';
+import MovieCard from './common/MovieCard';
 
-interface MovieListProps {
-	movies: Array<{ id: number; title: string }>;
-}
+type MovieListProps = {
+	movies: Movie[];
+};
 
-const MovieList: React.FC<MovieListProps> = ({ movies }) => {
+const MovieList = ({ movies }: MovieListProps) => {
 	return (
-		<div>
+		<div className='flex flex-wrap justify-center items-center w-full h-full gap-8'>
 			{movies.map((movie) => (
-				<MovieItem key={movie.id} title={movie.title} />
+				<MovieCard key={movie.id} movie={movie} />
 			))}
 		</div>
 	);
