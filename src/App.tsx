@@ -34,7 +34,7 @@ function App() {
 	return (
 		<div className='flex flex-col justify-between min-h-screen items-center bg-background'>
 			<Header apiStatus={apiStatus} />
-			<main className='w-full h-fit'>
+			<main className='w-full h-fit my-8 lg:my-12 lg:max-w-[1400px]'>
 				{loading ? (
 					<Loading />
 				) : (
