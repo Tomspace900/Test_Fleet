@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router';
 import { MovieDetailsType } from '../types/api';
 import { useEffect, useState } from 'react';
 import { getDetails } from '../utils/fetchAPI';
+import Loading from './common/Loading';
 const IMG_PATH = process.env.REACT_APP_IMG_PATH;
 
 const MovieDetails = () => {
@@ -26,12 +27,12 @@ const MovieDetails = () => {
 		};
 
 		fetchData();
-	}, [navigate]);
+	}, [navigate, id]);
 
 	const img_src = `${IMG_PATH}${details?.poster_path}`;
 
 	return loading ? (
-		<div>Loading...</div>
+		<Loading />
 	) : (
 		<div className='flex flex-col justify-center items-center w-full h-full'>
 			<div>
