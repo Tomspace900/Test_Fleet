@@ -17,7 +17,9 @@ const MovieCard = ({ movie }: MovieCardProps) => {
 	};
 
 	return (
-		<div className='bg-cover overflow-x-scroll rounded-lg cursor-pointer hover:scale-[1.03]' style={imgBackground}>
+		<div
+			className='bg-cover overflow-x-scroll rounded-lg cursor-pointer hover:scale-[1.03] transition-all ease-out duration-300'
+			style={imgBackground}>
 			<Link
 				to={`/${movie.id}`}
 				className='p-4 sm:h-72 sm:w-48 h-60 w-40 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end hover:backdrop-blur-sm'
