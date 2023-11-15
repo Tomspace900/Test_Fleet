@@ -5,19 +5,20 @@ import Footer from './components/Footer';
 import MovieList from './components/MovieList';
 import { useMovieContext } from './Context';
 import { Route, Routes } from 'react-router-dom';
+import MovieDetails from './components/MovieDetails';
 
 function App() {
 	const [apiStatus, setApiStatus] = useState<number>(0);
-	const { movies, addMovies, selectedMovie } = useMovieContext();
+	const { movies, addMovies } = useMovieContext();
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const authResponse = await checkAuth();
-				setApiStatus(authResponse.status_code);
+				const AuthResponseType = await checkAuth();
+				setApiStatus(AuthResponseType.status_code);
 
-				const discoverResponse = await getDiscover();
-				addMovies(discoverResponse.results);
+				const DiscoverResponseType = await getDiscover();
+				addMovies(DiscoverResponseType.results);
 			} catch (error) {
 				console.error('Error fetching API', error);
 			}
@@ -31,12 +32,7 @@ function App() {
 			<Header apiStatus={apiStatus} />
 			<main className='w-full h-fit'>
 				<Routes>
-					<Route
-						path='/:id'
-						element={
-							<div className='flex flex-col justify-center items-center w-full h-full'>{selectedMovie?.title}</div>
-						}
-					/>
+					<Route path='/:id' element={<MovieDetails />} />
 					<Route path='*' element={<MovieList movies={movies} />} />
 				</Routes>
 			</main>

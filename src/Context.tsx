@@ -1,28 +1,21 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { Movie, MovieDetails } from './types/api';
+import { MovieType } from './types/api';
 
 type MovieContextProps = {
-	movies: Movie[];
-	addMovies: (movies: Movie[]) => void;
-	selectedMovie: MovieDetails | null;
-	selectMovie: (movie: MovieDetails | null) => void;
+	movies: MovieType[];
+	addMovies: (movies: MovieType[]) => void;
 };
 
 const MovieContext = createContext<MovieContextProps | undefined>(undefined);
 
 export const MovieContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-	const [movies, setMovies] = useState<Movie[]>([]);
-	const [selectedMovie, setSelectedMovie] = useState<MovieDetails | null>(null);
+	const [movies, setMovies] = useState<MovieType[]>([]);
 
-	const addMovies = (movies: Movie[]) => {
+	const addMovies = (movies: MovieType[]) => {
 		setMovies(movies);
 	};
 
-	const selectMovie = (movie: MovieDetails | null) => {
-		setSelectedMovie(movie);
-	};
-
-	return <MovieContext.Provider value={{ movies, addMovies, selectedMovie, selectMovie }}>{children}</MovieContext.Provider>;
+	return <MovieContext.Provider value={{ movies, addMovies }}>{children}</MovieContext.Provider>;
 };
 
 export const useMovieContext = () => {

@@ -1,17 +1,15 @@
 import { useState } from 'react';
-import { Movie } from '../../types/api';
-import { useMovieContext } from '../../Context';
-import { getDetails } from '../../utils/fetchAPI';
-import { Link } from 'react-router-dom';
+import { MovieType } from '../../types/api';
+import { Link, useNavigate } from 'react-router-dom';
 const IMG_PATH = process.env.REACT_APP_IMG_PATH;
 
 type MovieCardProps = {
-	movie: Movie;
+	movie: MovieType;
 };
 
 const MovieCard = ({ movie }: MovieCardProps) => {
 	const [hover, setHover] = useState(false);
-	const { selectMovie } = useMovieContext();
+	const navigate = useNavigate();
 
 	const img_src = `${IMG_PATH}${movie.poster_path}`;
 	const imgBackground = {
@@ -19,8 +17,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
 	};
 
 	async function handleClick() {
-		const selected = await getDetails(movie.id);
-		selectMovie(selected);
+		navigate(`/${movie.id}`);
 	}
 
 	return (
@@ -42,24 +39,3 @@ const MovieCard = ({ movie }: MovieCardProps) => {
 };
 
 export default MovieCard;
-
-// discover response :
-// {
-// 	"adult": false,
-// 	"backdrop_path": "/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",
-// 	"genre_ids": [
-// 		18,
-// 		36
-// 	],
-// 	"id": 872585,
-// 	"original_language": "en",
-// 	"original_title": "Oppenheimer",
-// 	"overview": "The story of J. Robert Oppenheimer's role in the development of the atomic bomb during World War II.",
-// 	"popularity": 2706.372,
-// 	"poster_path": "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-// 	"release_date": "2023-07-19",
-// 	"title": "Oppenheimer",
-// 	"video": false,
-// 	"vote_average": 8.2,
-// 	"vote_count": 4360
-// },

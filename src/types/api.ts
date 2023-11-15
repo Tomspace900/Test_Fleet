@@ -1,17 +1,17 @@
-export type AuthResponse = {
+export type AuthResponseType = {
 	status_code: number;
 	status_message: string;
 	success: boolean;
 };
 
-export type DiscoverResponse = {
+export type DiscoverResponseType = {
 	page: number;
-	results: Movie[];
+	results: MovieType[];
 	total_pages: number;
 	total_results: number;
 };
 
-export type Movie = {
+export type MovieType = {
 	adult: boolean;
 	backdrop_path: string;
 	genre_ids: number[];
@@ -28,7 +28,7 @@ export type Movie = {
 	vote_count: number;
 };
 
-export type MovieDetails = {
+export type MovieDetailsType = {
 	adult: boolean;
 	backdrop_path: string;
 	belongs_to_collection: null;

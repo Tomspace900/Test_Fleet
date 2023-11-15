@@ -1,8 +1,8 @@
-import { Movie } from '../types/api';
+import { MovieType } from '../types/api';
 import MovieCard from './common/MovieCard';
 
 type MovieListProps = {
-	movies: Movie[];
+	movies: MovieType[];
 };
 
 const MovieList = ({ movies }: MovieListProps) => {

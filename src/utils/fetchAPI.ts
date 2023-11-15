@@ -1,4 +1,4 @@
-import { AuthResponse, DiscoverResponse, MovieDetails } from '../types/api';
+import { AuthResponseType, DiscoverResponseType, MovieDetailsType } from '../types/api';
 const API_URL = process.env.REACT_APP_API_URL;
 const API_TOKEN = process.env.REACT_APP_API_TOKEN;
 
@@ -29,17 +29,17 @@ async function fetchAPI(url: string, options: FetchOptions = {}) {
 }
 
 async function checkAuth() {
-	const response: AuthResponse = await fetchAPI('/authentication');
+	const response: AuthResponseType = await fetchAPI('/authentication');
 	return response;
 }
 
 async function getDiscover() {
-	const response: DiscoverResponse = await fetchAPI('/discover/movie?sort_by=popularity.desc');
+	const response: DiscoverResponseType = await fetchAPI('/discover/movie?sort_by=popularity.desc');
 	return response;
 }
 
 async function getDetails(id: number) {
-	const response: MovieDetails = await fetchAPI(`/movie/${id}`);
+	const response: MovieDetailsType = await fetchAPI(`/movie/${id}`);
 	return response;
 }
 
