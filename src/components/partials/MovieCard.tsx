@@ -25,10 +25,10 @@ const MovieCard = ({ movie }: MovieCardProps) => {
 				className='p-4 sm:h-72 sm:w-48 h-60 w-40 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end hover:backdrop-blur-sm'
 				onMouseOver={() => setHover(true)}
 				onMouseOut={() => setHover(false)}>
-				<div className='flex flex-col overflow-y-scroll overflow-hidden'>
-					<span className='text-md text-white'>{movie.title}</span>
-					{hover ? <p className='text-xs text-white mt-1'>{movie.release_date.slice(0, 4)}</p> : null}
-					{hover ? <p className='text-xs text-white mt-3'>{movie.overview.slice(0, 100)}...</p> : null}
+				<div className='flex flex-col overflow-y-scroll overflow-hidden text-white'>
+					<span className='text-md'>{movie.title}</span>
+					{hover ? <p className='text-xs mt-1'>{movie.release_date.slice(0, 4)}</p> : null}
+					{hover ? <p className='text-xs mt-3'>{movie.overview.slice(0, 100)}...</p> : null}
 				</div>
 			</Link>
 		</div>

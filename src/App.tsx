@@ -6,21 +6,21 @@ import MovieList from './components/MovieList';
 import { useMovieContext } from './Context';
 import { Route, Routes } from 'react-router-dom';
 import MovieDetails from './components/MovieDetails';
-import Loading from './components/common/Loading';
+import Loading from './components/partials/Loading';
 
 function App() {
 	const [loading, setLoading] = useState(true);
 	const [apiStatus, setApiStatus] = useState<number>(0);
-	const { movies, addMovies } = useMovieContext();
+	const { movies, setMovies } = useMovieContext();
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const AuthResponseType = await checkAuth();
-				const DiscoverResponseType = await getDiscover();
+				const ResponseType = await getDiscover();
 
 				setApiStatus(AuthResponseType.status_code);
-				addMovies(DiscoverResponseType.results);
+				setMovies(ResponseType.results);
 
 				setLoading(false);
 			} catch (error) {
@@ -29,7 +29,7 @@ function App() {
 		};
 
 		fetchData();
-	}, [addMovies]);
+	}, [setMovies]);
 
 	return (
 		<div className='flex flex-col justify-between min-h-screen items-center bg-background'>

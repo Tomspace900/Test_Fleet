@@ -1,4 +1,4 @@
-import { AuthResponseType, DiscoverResponseType, MovieDetailsType } from '../types/api';
+import { AuthResponseType, ResponseType, MovieDetailsType } from '../types/api';
 const API_URL = process.env.REACT_APP_API_URL;
 const API_TOKEN = process.env.REACT_APP_API_TOKEN;
 
@@ -34,7 +34,7 @@ async function checkAuth() {
 }
 
 async function getDiscover() {
-	const response: DiscoverResponseType = await fetchAPI('/discover/movie?sort_by=popularity.desc');
+	const response: ResponseType = await fetchAPI('/discover/movie?sort_by=popularity.desc');
 	return response;
 }
 
@@ -43,9 +43,9 @@ async function getDetails(id: number) {
 	return response;
 }
 
-async function getMultiSearch(query: string) {
-	const response = await fetchAPI(`/search/multi?query=${query}`);
-	return response.results;
+async function getMovieSearch(query: string) {
+	const response: ResponseType = await fetchAPI(`/search/movie?query=${query}`);
+	return response;
 }
 
-export { checkAuth, getDiscover, getMultiSearch, getDetails };
+export { checkAuth, getDiscover, getMovieSearch, getDetails };

@@ -3,19 +3,17 @@ import { MovieType } from './types/api';
 
 type MovieContextProps = {
 	movies: MovieType[];
-	addMovies: (movies: MovieType[]) => void;
+	setMovies: (movies: MovieType[]) => void;
+	lastQuery: string;
+	setLastQuery: (query: string) => void;
 };
 
 const MovieContext = createContext<MovieContextProps | undefined>(undefined);
 
 export const MovieContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 	const [movies, setMovies] = useState<MovieType[]>([]);
-
-	const addMovies = (movies: MovieType[]) => {
-		setMovies(movies);
-	};
-
-	return <MovieContext.Provider value={{ movies, addMovies }}>{children}</MovieContext.Provider>;
+	const [lastQuery, setLastQuery] = useState<string>('');
+	return <MovieContext.Provider value={{ movies, setMovies, lastQuery, setLastQuery }}>{children}</MovieContext.Provider>;
 };
 
 export const useMovieContext = () => {

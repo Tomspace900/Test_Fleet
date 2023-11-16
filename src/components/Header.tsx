@@ -7,7 +7,7 @@ type HeaderProps = {
 
 const Header = ({ apiStatus }: HeaderProps) => {
 	return (
-		<header className='w-full h-24 max-w-[95%] flex justify-start items-center gap-4'>
+		<header className='w-full h-fit pt-4 lg:pt-8 max-w-[95%] flex justify-start items-center gap-4'>
 			<Link to='/' className='text-primary-500 h-full w-fit flex justify-start items-center cursor-pointer'>
 				<img className='h-10' src='./logo.png' alt='logo' />
 				<div>{apiStatus === 1 ? 'API OK' : 'API Error'}</div>

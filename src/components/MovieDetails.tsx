@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router';
 import { MovieDetailsType } from '../types/api';
 import { useEffect, useState } from 'react';
 import { getDetails } from '../utils/fetchAPI';
-import Loading from './common/Loading';
+import Loading from './partials/Loading';
 const IMG_PATH = process.env.REACT_APP_IMG_PATH;
 
 const MovieDetails = () => {

@@ -4,7 +4,7 @@ export type AuthResponseType = {
 	success: boolean;
 };
 
-export type DiscoverResponseType = {
+export type ResponseType = {
 	page: number;
 	results: MovieType[];
 	total_pages: number;
