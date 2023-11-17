@@ -1,5 +1,6 @@
 import { IMovie } from '../types/types';
 
+// filter and sort movies by genre/notes/year/adult
 export const filterByGenre = (movies: IMovie[], genreId: number): IMovie[] => {
 	return movies.filter((movie) => movie.genre_ids.includes(genreId));
 };

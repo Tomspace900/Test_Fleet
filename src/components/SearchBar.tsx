@@ -1,5 +1,6 @@
 import SearchInput from './partials/SearchInput';
 
+// pass the displayFilters state and setDisplayFilters function as props to use them in the parent component
 type SearchBarProps = {
 	displayFilters: boolean;
 	setDisplayFilters: (value: boolean) => void;
@@ -13,7 +14,7 @@ const SearchBar = ({ displayFilters, setDisplayFilters }: SearchBarProps) => {
 				className='flex justify-center items-center hover:scale-105'
 				title='Filters'
 				onClick={() => setDisplayFilters(!displayFilters)}>
-				<img src='./sort.svg' alt='sort-icon' className='w-8 cursor-pointer' />
+				<img src='./filter.svg' alt='filter-icon' className='w-8 cursor-pointer' />
 			</div>
 		</div>
 	);

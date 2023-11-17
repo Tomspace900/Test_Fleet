@@ -12,6 +12,7 @@ type MovieContextProps = {
 
 const MovieContext = createContext<MovieContextProps | undefined>(undefined);
 
+// create the context provider to provide the values to all the components
 export const MovieContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 	const [movies, setMovies] = useState<IMovie[]>([]);
 	const [filteredMovies, setFilteredMovies] = useState<IMovie[]>([]);

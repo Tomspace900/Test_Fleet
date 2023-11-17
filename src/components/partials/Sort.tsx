@@ -4,6 +4,7 @@ import { sortMovies } from '../../utils/filter';
 const Sort = () => {
 	const { filteredMovies, lastQuery, setFilteredMovies } = useMovieContext();
 
+	// sort the movies list by the selected value
 	const handleSort = (sort: string) => {
 		if (sort === 'Sort') return filteredMovies;
 		const sorted = sortMovies(filteredMovies.slice(), sort);
@@ -12,7 +13,7 @@ const Sort = () => {
 
 	return (
 		<>
-			<div className='flex items-center bg-transparent border-white border-[1px] rounded-lg py-2 px-4 w-fit text-white text-base'>
+			<div className='flex items-center bg-transparent border-white border-[1px] rounded-lg py-2 px-4 w-fit text-white text-base hover:scale-[1.03]'>
 				<select
 					className='focus:outline-none bg-transparent'
 					defaultValue='Sort'

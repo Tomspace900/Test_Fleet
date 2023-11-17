@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 const Header = () => {
 	const [displayFilters, setDisplayFilters] = useState(false);
+
 	return (
 		<header className='w-full h-fit pt-4 lg:pt-8 max-w-[95%] flex justify-start items-center gap-4'>
 			<Link to='/' className='text-primary-500 h-full min-w-fit flex justify-start items-center self-start cursor-pointer'>

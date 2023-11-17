@@ -1,9 +1,11 @@
+// response of the authentication check
 export interface IAuthResponse {
 	status_code: number;
 	status_message: string;
 	success: boolean;
 }
 
+// general response of the API when fetching movies
 export interface IResponse {
 	page: number;
 	results: IMovie[];
@@ -11,6 +13,7 @@ export interface IResponse {
 	total_results: number;
 }
 
+// movie object
 export interface IMovie {
 	adult: boolean;
 	backdrop_path: string;
@@ -28,6 +31,7 @@ export interface IMovie {
 	vote_count: number;
 }
 
+// movie details
 export interface IMovieDetails {
 	adult: boolean;
 	backdrop_path: string;

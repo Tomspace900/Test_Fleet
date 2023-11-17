@@ -7,6 +7,8 @@ const SearchInput = () => {
 	const [query, setQuery] = useState('');
 	const { setMovies, setFilteredMovies, setLastQuery } = useMovieContext();
 	const navigate = useNavigate();
+
+	// fetch the search results and set the movies list, navigate to the home page if no results
 	const handleSearch = async (query: string) => {
 		try {
 			const response = await getMovieSearch(query);
@@ -18,12 +20,13 @@ const SearchInput = () => {
 			console.error('Error fetching search', error);
 		}
 	};
+
 	return (
-		<div className='flex gap-3 pr-2 border-r-[1px] border-black'>
+		<div className='flex gap-3 pr-2 border-r-[1px] border-black '>
 			<img
 				src='./search.svg'
 				alt='search-icon'
-				className='w-8 hidden md:block cursor-pointer'
+				className='w-8 hidden md:block cursor-pointer hover:scale-105'
 				onClick={() => {
 					if (query) {
 						handleSearch(query);

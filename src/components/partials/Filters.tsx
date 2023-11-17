@@ -23,10 +23,9 @@ const Filters = () => {
 			activeFilters[filterType] = filterValue;
 		}
 
-		// parcours les filtres actifs et les applique à la liste de films
-
 		let updatedList = movies;
 
+		// browse the active filters and call the right function for each one
 		Object.keys(activeFilters).forEach((filter) => {
 			switch (filter) {
 				case 'genre':
@@ -63,7 +62,7 @@ const Filters = () => {
 
 	return (
 		<div className='flex flex-wrap items-center gap-2 w-fit h-full text-black'>
-			<div className='flex items-center bg-white rounded-lg py-2 px-4 w-fit h-[80%] text-black'>
+			<div className='flex items-center bg-white rounded-lg py-2 px-4 w-fit h-[80%] text-black hover:scale-[1.03]'>
 				<select
 					className='focus:outline-none'
 					defaultValue='Genre'
@@ -76,7 +75,7 @@ const Filters = () => {
 					))}
 				</select>
 			</div>
-			<div className='flex items-center bg-white rounded-lg py-2 px-4 w-fit h-[80%] text-black'>
+			<div className='flex items-center bg-white rounded-lg py-2 px-4 w-fit h-[80%] text-black hover:scale-[1.03]'>
 				<select
 					className='focus:outline-none'
 					defaultValue='Note min'
@@ -89,7 +88,7 @@ const Filters = () => {
 					))}
 				</select>
 			</div>
-			<div className='flex items-center bg-white rounded-lg py-2 px-4 w-fit h-[80%] text-black'>
+			<div className='flex items-center bg-white rounded-lg py-2 px-4 w-fit h-[80%] text-black hover:scale-[1.03]'>
 				<select
 					className='focus:outline-none'
 					defaultValue='Year'
@@ -102,7 +101,7 @@ const Filters = () => {
 					))}
 				</select>
 			</div>
-			<div className='flex items-center bg-white rounded-lg py-2 px-4 w-fit h-[80%] text-black'>
+			<div className='flex items-center bg-white rounded-lg py-2 px-4 w-fit h-[80%] text-black hover:scale-[1.03]'>
 				<select
 					className='focus:outline-none'
 					defaultValue='Adult'

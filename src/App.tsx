@@ -12,6 +12,7 @@ function App() {
 	const [loading, setLoading] = useState(true);
 	const { setFilteredMovies, setMovies } = useMovieContext();
 
+	// fetch the discover movies list and save it
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -29,6 +30,7 @@ function App() {
 		fetchData();
 	}, [setMovies, setFilteredMovies]);
 
+	// use react router to handle the routes
 	return (
 		<div className='flex flex-col justify-between min-h-screen items-center bg-background'>
 			<div className='flex flex-col w-full items-center'>

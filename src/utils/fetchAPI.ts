@@ -8,6 +8,7 @@ interface FetchOptions {
 	body?: any;
 }
 
+// general fetching function for the API with token authentication from .env
 async function fetchAPI(url: string, options: FetchOptions = {}) {
 	const headers = {
 		Authorization: `Bearer ${API_TOKEN}`,
@@ -28,21 +29,25 @@ async function fetchAPI(url: string, options: FetchOptions = {}) {
 	return response.json();
 }
 
+// check if the token is valid
 async function checkAuth() {
 	const response: IAuthResponse = await fetchAPI('/authentication');
 	return response;
 }
 
+// get the list of popular movies
 async function getDiscover() {
 	const response: IResponse = await fetchAPI('/discover/movie?sort_by=popularity.desc');
 	return response;
 }
 
+// get the details of a movie
 async function getDetails(id: number) {
 	const response: IMovieDetails = await fetchAPI(`/movie/${id}`);
 	return response;
 }
 
+// search for movies
 async function getMovieSearch(query: string) {
 	const response: IResponse = await fetchAPI(`/search/movie?query=${query}`);
 	return response;

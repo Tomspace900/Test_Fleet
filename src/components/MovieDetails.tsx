@@ -9,9 +9,11 @@ const MovieDetails = () => {
 	const [details, setDetails] = useState<IMovieDetails | null>(null);
 	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
+	// get the id from the url
 	const { id } = useParams();
 
 	useEffect(() => {
+		// fetch the movie details and save them, navigate to the home page if no results (when you are on the details page for exemple)
 		const fetchData = async () => {
 			try {
 				if (id) {
