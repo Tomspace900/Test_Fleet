@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { checkAuth, getDiscover } from './utils/fetchAPI';
+import { getDiscover } from './utils/fetchAPI';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MovieList from './components/MovieList';
@@ -10,17 +10,15 @@ import Loading from './components/partials/Loading';
 
 function App() {
 	const [loading, setLoading] = useState(true);
-	const [apiStatus, setApiStatus] = useState<number>(0);
-	const { movies, setMovies } = useMovieContext();
+	const { setFilteredMovies, setMovies } = useMovieContext();
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const AuthResponseType = await checkAuth();
-				const ResponseType = await getDiscover();
+				const IResponse = await getDiscover();
 
-				setApiStatus(AuthResponseType.status_code);
-				setMovies(ResponseType.results);
+				setMovies(IResponse.results);
+				setFilteredMovies(IResponse.results);
 
 				setLoading(false);
 			} catch (error) {
@@ -29,21 +27,23 @@ function App() {
 		};
 
 		fetchData();
-	}, [setMovies]);
+	}, [setMovies, setFilteredMovies]);
 
 	return (
 		<div className='flex flex-col justify-between min-h-screen items-center bg-background'>
-			<Header apiStatus={apiStatus} />
-			<main className='w-full h-fit my-8 lg:my-12 lg:max-w-[1400px]'>
-				{loading ? (
-					<Loading />
-				) : (
-					<Routes>
-						<Route path='/:id' element={<MovieDetails />} />
-						<Route path='*' element={<MovieList movies={movies} />} />
-					</Routes>
-				)}
-			</main>
+			<div className='flex flex-col w-full items-center'>
+				<Header />
+				<main className='w-full h-full my-8 lg:my-12 lg:max-w-[1400px] flex justify-center items-center'>
+					{loading ? (
+						<Loading />
+					) : (
+						<Routes>
+							<Route path='/:id' element={<MovieDetails />} />
+							<Route path='*' element={<MovieList />} />
+						</Routes>
+					)}
+				</main>
+			</div>
 			<Footer />
 		</div>
 	);

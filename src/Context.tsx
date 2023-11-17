@@ -1,9 +1,11 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { MovieType } from './types/api';
+import { IMovie } from './types/types';
 
 type MovieContextProps = {
-	movies: MovieType[];
-	setMovies: (movies: MovieType[]) => void;
+	movies: IMovie[];
+	setMovies: (movies: IMovie[]) => void;
+	filteredMovies: IMovie[];
+	setFilteredMovies: (movies: IMovie[]) => void;
 	lastQuery: string;
 	setLastQuery: (query: string) => void;
 };
@@ -11,9 +13,14 @@ type MovieContextProps = {
 const MovieContext = createContext<MovieContextProps | undefined>(undefined);
 
 export const MovieContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-	const [movies, setMovies] = useState<MovieType[]>([]);
+	const [movies, setMovies] = useState<IMovie[]>([]);
+	const [filteredMovies, setFilteredMovies] = useState<IMovie[]>([]);
 	const [lastQuery, setLastQuery] = useState<string>('');
-	return <MovieContext.Provider value={{ movies, setMovies, lastQuery, setLastQuery }}>{children}</MovieContext.Provider>;
+	return (
+		<MovieContext.Provider value={{ movies, setMovies, filteredMovies, setFilteredMovies, lastQuery, setLastQuery }}>
+			{children}
+		</MovieContext.Provider>
+	);
 };
 
 export const useMovieContext = () => {

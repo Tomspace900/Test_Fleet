@@ -1,12 +1,12 @@
 import { useParams, useNavigate } from 'react-router';
-import { MovieDetailsType } from '../types/api';
+import { IMovieDetails } from '../types/types';
 import { useEffect, useState } from 'react';
 import { getDetails } from '../utils/fetchAPI';
 import Loading from './partials/Loading';
 const IMG_PATH = process.env.REACT_APP_IMG_PATH;
 
 const MovieDetails = () => {
-	const [details, setDetails] = useState<MovieDetailsType | null>(null);
+	const [details, setDetails] = useState<IMovieDetails | null>(null);
 	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
 	const { id } = useParams();

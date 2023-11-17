@@ -3,14 +3,15 @@ import { useMovieContext } from '../../Context';
 import { useNavigate } from 'react-router';
 import { getMovieSearch } from '../../utils/fetchAPI';
 
-const Input = () => {
+const SearchInput = () => {
 	const [query, setQuery] = useState('');
-	const { setMovies, setLastQuery } = useMovieContext();
+	const { setMovies, setFilteredMovies, setLastQuery } = useMovieContext();
 	const navigate = useNavigate();
 	const handleSearch = async (query: string) => {
 		try {
 			const response = await getMovieSearch(query);
 			setMovies(response.results);
+			setFilteredMovies(response.results);
 			setLastQuery(query);
 			navigate('/');
 		} catch (error) {
@@ -32,7 +33,7 @@ const Input = () => {
 			<input
 				type='text'
 				placeholder='Search for a movie'
-				className='py-2 focus:outline-none placeholder-gray-500 bg-white h-full md:w-[300px] w-fit'
+				className='py-2 focus:outline-none placeholder-gray-500 bg-white h-full sm:w-[300px] w-fit'
 				onChange={(e) => setQuery(e.currentTarget.value)}
 				onKeyDown={(e) => {
 					if (e.key === 'Enter' && e.currentTarget.value) {
@@ -45,4 +46,4 @@ const Input = () => {
 	);
 };
 
-export default Input;
+export default SearchInput;

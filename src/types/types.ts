@@ -1,17 +1,17 @@
-export type AuthResponseType = {
+export interface IAuthResponse {
 	status_code: number;
 	status_message: string;
 	success: boolean;
-};
+}
 
-export type ResponseType = {
+export interface IResponse {
 	page: number;
-	results: MovieType[];
+	results: IMovie[];
 	total_pages: number;
 	total_results: number;
-};
+}
 
-export type MovieType = {
+export interface IMovie {
 	adult: boolean;
 	backdrop_path: string;
 	genre_ids: number[];
@@ -26,9 +26,9 @@ export type MovieType = {
 	video: boolean;
 	vote_average: number;
 	vote_count: number;
-};
+}
 
-export type MovieDetailsType = {
+export interface IMovieDetails {
 	adult: boolean;
 	backdrop_path: string;
 	belongs_to_collection: null;
@@ -54,7 +54,7 @@ export type MovieDetailsType = {
 	video: boolean;
 	vote_average: number;
 	vote_count: number;
-};
+}
 
 type Genre = {
 	id: number;
