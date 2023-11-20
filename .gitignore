@@ -21,9 +21,6 @@ package-lock.json
 # Visual Studio Code
 .vscode/
 
-# Tailwind CSS
-tailwind.config.js
-
 # macOS folder attributes
 .AppleDouble
 .AppleDesktop
